@@ -1,4 +1,6 @@
 import PluginVariables as msqcvar;
+import TriggerEditor.TETools as tt;
+
 const Displaytext = StringBuffer();
 /*================Start Var================*/
 var AA;
@@ -78,63 +80,6 @@ var txtPtr;
 const trgk = $T('Artanis & safhfh');
 
 
-
-
-function BuildResetEPD(unitEPD) {
-    /*ToolTip
-    Korean
-    구조오프셋EPD;
-    var unitEPD;
-    의 생산 대기열을 초기화합니다.;
-    Korean
-    English
-    English
-    */
-    SetMemoryEPD(unitEPD + 0x98 / 4, 7, 228 + 228 * 65536);
-    SetMemoryEPD(unitEPD + 0x9C / 4, 7, 228 + 228 * 65536);
-    wwrite_epd(unitEPD + 0x0A0 / 4,  0x0A0 % 4, 228);
-    bwrite_epd(unitEPD + 0x0A6 / 4,  0x0A6 % 4, 2);
-}
-function BuildReset(unitPTR) {
-    /*ToolTip
-    Korean
-    구조오프셋Ptr;
-    var unitPTR;
-    의 생산 대기열을 초기화합니다.;
-    Korean
-    English
-    English
-    */
-    wwrite(unitPTR + 0x098, 228);
-    wwrite(unitPTR + 0x09A, 228);
-    wwrite(unitPTR + 0x09C, 228);
-    wwrite(unitPTR + 0x09E, 228);
-    wwrite(unitPTR + 0x0A0, 228);
-    bwrite(unitPTR + 0x0A6, 2);
-}
-function BuildCheck(unitPTR ,Unit) {
-    /*ToolTip
-    Korean
-    구조오프셋Ptr;
-    var unitPTR;
-    이;
-    var Unit;
-    를 생산중인지 확인합니다.;
-    Korean
-    English
-    English
-    */
-    if(
-        wread(unitPTR + 0x098) == Unit || 
-        wread(unitPTR + 0x09A) == Unit || 
-        wread(unitPTR + 0x09C) == Unit || 
-        wread(unitPTR + 0x09E) == Unit || 
-        wread(unitPTR + 0x0A0) == Unit
-    ){
-        return True;
-    }
-    return False;
-}
 /*=========58dc60=======Location Tracker=====0x0058A39C (1(P3)========58B4D4 (93)===*/
 
 
@@ -9867,7 +9812,7 @@ function beforeTriggerExec(){
       
               if  ( 
 
-             BuildCheck(unitPTR,89)
+             tt.BuildCheck(unitPTR,89)
 
             ){
 
@@ -9875,12 +9820,12 @@ function beforeTriggerExec(){
           SetDeaths(P1,SetTo, 5, 95);  
           SetDeaths(P1,SetTo, 3, 94);  
 
-                BuildReset(unitPTR);
+                tt.BuildReset(unitPTR);
             }
             
             if  ( 
 
-             BuildCheck(unitPTR,90)
+             tt.BuildCheck(unitPTR,90)
 
             ){
 
@@ -9888,62 +9833,62 @@ function beforeTriggerExec(){
           SetDeaths(P1,SetTo, 5, 95);  
           SetDeaths(P1,SetTo, 3, 94);   
 
-                BuildReset(unitPTR);
+                tt.BuildReset(unitPTR);
             }
             
             if  ( 
 
-             BuildCheck(unitPTR,91)
+             tt.BuildCheck(unitPTR,91)
 
             ){
           SetDeaths(P1,Add, 1, 201);
           SetDeaths(P1,SetTo, 5, 95); 
           SetDeaths(P1,SetTo, 3, 94); 
-                BuildReset(unitPTR);
+                tt.BuildReset(unitPTR);
             }
         
             if  ( 
 
-             BuildCheck(unitPTR,92)
+             tt.BuildCheck(unitPTR,92)
 
             ){
           SetDeaths(P1,Add, 1, 202);
           SetDeaths(P1,SetTo, 5, 95); 
           SetDeaths(P1,SetTo, 3, 94); 
-                BuildReset(unitPTR);
+                tt.BuildReset(unitPTR);
             }
           
             if  ( 
 
-             BuildCheck(unitPTR,93)
+             tt.BuildCheck(unitPTR,93)
 
             ){
           SetDeaths(P1,Add, 1, 203);
           SetDeaths(P1,SetTo, 5, 95); 
           SetDeaths(P1,SetTo, 3, 94); 
-                BuildReset(unitPTR);
+                tt.BuildReset(unitPTR);
             }
          
              if  ( 
 
-             BuildCheck(unitPTR,94)
+             tt.BuildCheck(unitPTR,94)
 
             ){
           SetDeaths(P1,Add, 1, 204);
           SetDeaths(P1,SetTo, 5, 95); 
           SetDeaths(P1,SetTo, 3, 94); 
-                BuildReset(unitPTR);
+                tt.BuildReset(unitPTR);
             }
           
              if  ( 
 
-             BuildCheck(unitPTR,88)
+             tt.BuildCheck(unitPTR,88)
 
             ){
           SetDeaths(P1,Add, 1, 205);
           SetDeaths(P1,SetTo, 5, 95); 
           SetDeaths(P1,SetTo, 3, 94); 
-                BuildReset(unitPTR);
+                tt.BuildReset(unitPTR);
             }
         }        
         {
