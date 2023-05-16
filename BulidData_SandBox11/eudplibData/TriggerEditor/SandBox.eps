@@ -79,10 +79,7 @@ function ClassicTriggerExec() {
     once {
         gg = 24;
 
-        SetMemory(0x058dc60, SetTo, 1); /* Loc 1*/
-        SetMemory(0x058dc64, SetTo, 1);
-        SetMemory(0x058dc68, SetTo, 1);
-        SetMemory(0x058dc6C, SetTo, 1);
+        setloc("Location 1", 1, 1);
 
         H = 1;
         G1 = 150;
@@ -91,8 +88,7 @@ function ClassicTriggerExec() {
     Cunit = dwread(0x006284E8);
     V2 = bread(0x663150 + 80 * 1);
     V3 = bread(0x00582324 + 3840);
-    AA = dwread(0x0058dc60);
-    BB = dwread(0x0058dc64);
+    AA, BB = getlocTL("Location 1");
 
     gg -= 1;
 
@@ -105,230 +101,113 @@ function ClassicTriggerExec() {
     Mix12 = Mix11;
 
     if (Deaths(P1, Exactly, 0, 93)) {
-        SetMemory(0x058Dd04, SetTo, 270 + ScreenY);
-        SetMemory(0x058Dd0c, SetTo, 276 + ScreenY);
-        SetMemory(0x058Dd00, SetTo, 54 + ScreenX);
-        SetMemory(0x058Dd08, SetTo, 56 + ScreenX);
+        setloc("Location 9", 54 + ScreenX, 270 + ScreenY, 56 + ScreenX, 276 + ScreenY);
     }
 
     if (Deaths(P1, Exactly, 1337, 93)) {
-        SetMemory(0x058Dd04, SetTo, 265 + ScreenY); /* Loc 9*/
-        SetMemory(0x058Dd0c, SetTo, 270 + ScreenY);
-        SetMemory(0x058Dd00, SetTo, 34 + ScreenX);
-        SetMemory(0x058Dd08, SetTo, 86 + ScreenX);
+        setloc("Location 9", 34 + ScreenX, 265 + ScreenY, 86 + ScreenX, 270 + ScreenY);
+    
+        setloc("Location 10", 70 + ScreenX, 220 + ScreenY, 96 + ScreenX, 224 + ScreenY);
+    
+        setloc("Location 11", 70 + ScreenX, 200 + ScreenY, 96 + ScreenX, 204 + ScreenY);
+    
+        setloc("Location 12", 70 + ScreenX, 180 + ScreenY, 96 + ScreenX, 184 + ScreenY);
+    
+        setloc("Location 13", 70 + ScreenX, 160 + ScreenY, 96 + ScreenX, 164 + ScreenY);
 
-        SetMemory(0x058Dd18, SetTo, 220 + ScreenY); /* Loc 10*/
-        SetMemory(0x058Dd20, SetTo, 224 + ScreenY);
-        SetMemory(0x058Dd14, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd1c, SetTo, 96 + ScreenX);
-
-        SetMemory(0x058Dd2c, SetTo, 200 + ScreenY); /* Loc 11*/
-        SetMemory(0x058Dd34, SetTo, 204 + ScreenY);
-        SetMemory(0x058Dd28, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd30, SetTo, 96 + ScreenX);
-
-        SetMemory(0x058Dd40, SetTo, 180 + ScreenY); /* Loc 12*/
-        SetMemory(0x058Dd48, SetTo, 184 + ScreenY);
-        SetMemory(0x058Dd3c, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd44, SetTo, 96 + ScreenX);
-
-        SetMemory(0x058Dd54, SetTo, 160 + ScreenY); /* Loc 13*/
-        SetMemory(0x058Dd5c, SetTo, 164 + ScreenY);
-        SetMemory(0x058Dd50, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd58, SetTo, 96 + ScreenX);
-
-        SetMemory(0x058Dd68, SetTo, 240 + ScreenY); /* Loc 14*/
-        SetMemory(0x058Dd70, SetTo, 245 + ScreenY);
-        SetMemory(0x058Dd64, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd6c, SetTo, 96 + ScreenX);
-
+        setloc("Location 14", 70 + ScreenX, 240 + ScreenY, 96 + ScreenX, 245 + ScreenY);
     }
 
     if (Deaths(P1, Exactly, 1335, 93) &&
         UnitEPD1 <= 100
     ) {
-        SetMemory(0x058Dd04, SetTo, 265 + ScreenY); /* Loc 9*/
-        SetMemory(0x058Dd0c, SetTo, 270 + ScreenY);
-        SetMemory(0x058Dd00, SetTo, 34 + ScreenX);
-        SetMemory(0x058Dd08, SetTo, 86 + ScreenX);
+        setloc("Location 9", 34 + ScreenX, 265 + ScreenY, 86 + ScreenX, 270 + ScreenY);
 
-        SetMemory(0x058Dd18, SetTo, 230 + ScreenY); /* Loc 10*/
-        SetMemory(0x058Dd20, SetTo, 235 + ScreenY);
-        SetMemory(0x058Dd14, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd1c, SetTo, 96 + ScreenX);
+        setloc("Location 10", 70 + ScreenX, 230 + ScreenY, 96 + ScreenX, 235 + ScreenY);
 
-        SetMemory(0x058Dd2c, SetTo, 190 + ScreenY); /* Loc 11*/
-        SetMemory(0x058Dd34, SetTo, 195 + ScreenY);
-        SetMemory(0x058Dd28, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd30, SetTo, 96 + ScreenX);
+        setloc("Location 11", 70 + ScreenX, 190 + ScreenY, 96 + ScreenX, 195 + ScreenY);
 
-        SetMemory(0x058Dd40, SetTo, 210 + ScreenY); /* Loc 12*/
-        SetMemory(0x058Dd48, SetTo, 215 + ScreenY);
-        SetMemory(0x058Dd3c, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd44, SetTo, 96 + ScreenX);
+        setloc("Location 12", 70 + ScreenX, 210 + ScreenY, 96 + ScreenX, 215 + ScreenY);
 
-        SetMemory(0x058Dd54, SetTo, 160 + ScreenY); /* Loc 13*/
-        SetMemory(0x058Dd5c, SetTo, 164 + ScreenY);
-        SetMemory(0x058Dd50, SetTo, 47 + ScreenX);
-        SetMemory(0x058Dd58, SetTo, 50 + ScreenX);
+        setloc("Location 13", 47 + ScreenX, 160 + ScreenY, 50 + ScreenX, 164 + ScreenY);
 
-        SetMemory(0x058Dd68, SetTo, 160 + ScreenY); /* Loc 14*/
-        SetMemory(0x058Dd70, SetTo, 164 + ScreenY);
-        SetMemory(0x058Dd64, SetTo, 75 + ScreenX);
-        SetMemory(0x058Dd6c, SetTo, 80 + ScreenX);
+        setloc("Location 14", 75 + ScreenX, 160 + ScreenY, 80 + ScreenX, 164 + ScreenY);
 
-        SetMemory(0x058Dd7c, SetTo, 330 + ScreenY); /* Loc 15*/
-        SetMemory(0x058Dd84, SetTo, 335 + ScreenY);
-        SetMemory(0x058Dd78, SetTo, 310 + ScreenX);
-        SetMemory(0x058Dd80, SetTo, 320 + ScreenX);
+        setloc("Location 15", 310 + ScreenX, 330 + ScreenY, 320 + ScreenX, 335 + ScreenY);
 
-        SetMemory(0x058Dd90, SetTo, 330 + ScreenY); /* Loc 16*/
-        SetMemory(0x058Dd98, SetTo, 335 + ScreenY);
-        SetMemory(0x058Dd8c, SetTo, 310 + ScreenX);
-        SetMemory(0x058Dd94, SetTo, 320 + ScreenX);
+        setloc("Location 16", 310 + ScreenX, 330 + ScreenY, 320 + ScreenX, 335 + ScreenY);
     }
 
     if (Deaths(P1, Exactly, 1335, 93) &&
         UnitEPD1 >= 100
     ) {
-        SetMemory(0x058Dd04, SetTo, 265 + ScreenY); /* Loc 9*/
-        SetMemory(0x058Dd0c, SetTo, 270 + ScreenY);
-        SetMemory(0x058Dd00, SetTo, 34 + ScreenX);
-        SetMemory(0x058Dd08, SetTo, 86 + ScreenX);
+        setloc("Location 9", 34 + ScreenX, 265 + ScreenY, 86 + ScreenX, 270 + ScreenY);
 
-        SetMemory(0x058Dd18, SetTo, 230 + ScreenY); /* Loc 10*/
-        SetMemory(0x058Dd20, SetTo, 235 + ScreenY);
-        SetMemory(0x058Dd14, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd1c, SetTo, 96 + ScreenX);
+        setloc("Location 10", 70 + ScreenX, 230 + ScreenY, 96 + ScreenX, 235 + ScreenY);
 
-        SetMemory(0x058Dd2c, SetTo, 190 + ScreenY); /* Loc 11*/
-        SetMemory(0x058Dd34, SetTo, 195 + ScreenY);
-        SetMemory(0x058Dd28, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd30, SetTo, 96 + ScreenX);
+        setloc("Location 11", 70 + ScreenX, 190 + ScreenY, 96 + ScreenX, 195 + ScreenY);
 
-        SetMemory(0x058Dd40, SetTo, 210 + ScreenY); /* Loc 12*/
-        SetMemory(0x058Dd48, SetTo, 215 + ScreenY);
-        SetMemory(0x058Dd3c, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd44, SetTo, 96 + ScreenX);
+        setloc("Location 12", 70 + ScreenX, 210 + ScreenY, 96 + ScreenX, 215 + ScreenY);
 
-        SetMemory(0x058Dd54, SetTo, 160 + ScreenY); /* Loc 13*/
-        SetMemory(0x058Dd5c, SetTo, 164 + ScreenY);
-        SetMemory(0x058Dd50, SetTo, 47 + ScreenX);
-        SetMemory(0x058Dd58, SetTo, 50 + ScreenX);
+        setloc("Location 13", 47 + ScreenX, 160 + ScreenY, 50 + ScreenX, 164 + ScreenY);
 
-        SetMemory(0x058Dd68, SetTo, 160 + ScreenY); /* Loc 14*/
-        SetMemory(0x058Dd70, SetTo, 164 + ScreenY);
-        SetMemory(0x058Dd64, SetTo, 85 + ScreenX);
-        SetMemory(0x058Dd6c, SetTo, 90 + ScreenX);
+        setloc("Location 14", 85 + ScreenX, 160 + ScreenY, 90 + ScreenX, 164 + ScreenY);
 
-        SetMemory(0x058Dd7c, SetTo, 330 + ScreenY); /* Loc 15*/
-        SetMemory(0x058Dd84, SetTo, 335 + ScreenY);
-        SetMemory(0x058Dd78, SetTo, 310 + ScreenX);
-        SetMemory(0x058Dd80, SetTo, 320 + ScreenX);
+        setloc("Location 15", 310 + ScreenX, 330 + ScreenY, 320 + ScreenX, 335 + ScreenY);
     }
 
     if (Deaths(P1, Exactly, 1331, 93)) {
+        setloc("Location 9", 34 + ScreenX, 265 + ScreenY, 86 + ScreenX, 270 + ScreenY);
 
-        SetMemory(0x058Dd04, SetTo, 265 + ScreenY); /* Loc 9*/
-        SetMemory(0x058Dd0c, SetTo, 270 + ScreenY);
-        SetMemory(0x058Dd00, SetTo, 34 + ScreenX);
-        SetMemory(0x058Dd08, SetTo, 86 + ScreenX);
-
-        SetMemory(0x058Dd18, SetTo, 175 + ScreenY); /* Loc 10*/
-        SetMemory(0x058Dd20, SetTo, 195 + ScreenY);
-        SetMemory(0x058Dd14, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd1c, SetTo, 96 + ScreenX);
+        setloc("Location 10", 70 + ScreenX, 175 + ScreenY, 96 + ScreenX, 195 + ScreenY);
 
     }
 
     if (Deaths(P1, Exactly, 1326, 93)) {
-        SetMemory(0x058Dd04, SetTo, 265 + ScreenY); /* Loc 9*/
-        SetMemory(0x058Dd0c, SetTo, 270 + ScreenY);
-        SetMemory(0x058Dd00, SetTo, 34 + ScreenX);
-        SetMemory(0x058Dd08, SetTo, 86 + ScreenX);
+        setloc("Location 9", 34 + ScreenX, 265 + ScreenY, 86 + ScreenX, 270 + ScreenY);
 
-        SetMemory(0x058Dd18, SetTo, 220 + ScreenY); /* Loc 10*/
-        SetMemory(0x058Dd20, SetTo, 224 + ScreenY);
-        SetMemory(0x058Dd14, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd1c, SetTo, 96 + ScreenX);
+        setloc("Location 10", 70 + ScreenX, 220 + ScreenY, 96 + ScreenX, 224 + ScreenY);
 
-        SetMemory(0x058Dd2c, SetTo, 200 + ScreenY); /* Loc 11*/
-        SetMemory(0x058Dd34, SetTo, 204 + ScreenY);
-        SetMemory(0x058Dd28, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd30, SetTo, 96 + ScreenX);
+        setloc("Location 11", 70 + ScreenX, 200 + ScreenY, 96 + ScreenX, 204 + ScreenY);
 
-        SetMemory(0x058Dd40, SetTo, 180 + ScreenY); /* Loc 12*/
-        SetMemory(0x058Dd48, SetTo, 184 + ScreenY);
-        SetMemory(0x058Dd3c, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd44, SetTo, 96 + ScreenX);
+        setloc("Location 12", 70 + ScreenX, 180 + ScreenY, 96 + ScreenX, 184 + ScreenY);
 
-        SetMemory(0x058Dd54, SetTo, 160 + ScreenY); /* Loc 13*/
-        SetMemory(0x058Dd5c, SetTo, 164 + ScreenY);
-        SetMemory(0x058Dd50, SetTo, 70 + ScreenX);
-        SetMemory(0x058Dd58, SetTo, 96 + ScreenX);
+        setloc("Location 13", 70 + ScreenX, 160 + ScreenY, 96 + ScreenX, 164 + ScreenY);
 
     }
 
     if (Deaths(P1, AtMost, 1324, 93) &&
         Deaths(P1, AtLeast, 1200, 93)
     ) {
-        SetMemory(0x058Dd04, SetTo, 265 + ScreenY); /* Loc 9*/
-        SetMemory(0x058Dd0c, SetTo, 280 + ScreenY);
-        SetMemory(0x058Dd00, SetTo, 34 + ScreenX);
-        SetMemory(0x058Dd08, SetTo, 86 + ScreenX);
+        setloc("Location 9", 34 + ScreenX, 265 + ScreenY, 86 + ScreenX, 280 + ScreenY);
 
-        SetMemory(0x058Dd18, SetTo, 25 + ScreenY); /* Loc 10*/
-        SetMemory(0x058Dd20, SetTo, 45 + ScreenY);
-        SetMemory(0x058Dd14, SetTo, 40 + ScreenX);
-        SetMemory(0x058Dd1c, SetTo, 56 + ScreenX);
+        setloc("Location 10", 40 + ScreenX, 25 + ScreenY, 56 + ScreenX, 45 + ScreenY);
 
-        SetMemory(0x058Dd2c, SetTo, 75 + ScreenY); /* Loc 11*/
-        SetMemory(0x058Dd34, SetTo, 95 + ScreenY);
-        SetMemory(0x058Dd28, SetTo, 40 + ScreenX);
-        SetMemory(0x058Dd30, SetTo, 56 + ScreenX);
+        setloc("Location 11", 40 + ScreenX, 75 + ScreenY, 56 + ScreenX, 95 + ScreenY);
 
-        SetMemory(0x058Dd40, SetTo, 125 + ScreenY); /* Loc 12*/
-        SetMemory(0x058Dd48, SetTo, 145 + ScreenY);
-        SetMemory(0x058Dd3c, SetTo, 40 + ScreenX);
-        SetMemory(0x058Dd44, SetTo, 56 + ScreenX);
+        setloc("Location 12", 40 + ScreenX, 125 + ScreenY, 56 + ScreenX, 145 + ScreenY);
 
-        SetMemory(0x058Dd54, SetTo, 175 + ScreenY); /* Loc 13*/
-        SetMemory(0x058Dd5c, SetTo, 195 + ScreenY);
-        SetMemory(0x058Dd50, SetTo, 40 + ScreenX);
-        SetMemory(0x058Dd58, SetTo, 56 + ScreenX);
+        setloc("Location 13", 40 + ScreenX, 175 + ScreenY, 56 + ScreenX, 195 + ScreenY);
 
-        SetMemory(0x058Dd68, SetTo, 225 + ScreenY); /* Loc 14*/
-        SetMemory(0x058Dd70, SetTo, 245 + ScreenY);
-        SetMemory(0x058Dd64, SetTo, 40 + ScreenX);
-        SetMemory(0x058Dd6c, SetTo, 56 + ScreenX);
+        setloc("Location 14", 40 + ScreenX, 225 + ScreenY, 56 + ScreenX, 245 + ScreenY);
 
-        SetMemory(0x058Dd7c, SetTo, 215 + ScreenY); /* Loc 15*/
-        SetMemory(0x058Dd84, SetTo, 240 + ScreenY);
-        SetMemory(0x058Dd78, SetTo, 85 + ScreenX);
-        SetMemory(0x058Dd80, SetTo, 110 + ScreenX);
+        setloc("Location 15", 85 + ScreenX, 215 + ScreenY, 110 + ScreenX, 240 + ScreenY);
 
-        SetMemory(0x058Dd90, SetTo, 215 + ScreenY); /* Loc 16*/
-        SetMemory(0x058Dd98, SetTo, 240 + ScreenY);
-        SetMemory(0x058Dd8c, SetTo, 102 + ScreenX);
-        SetMemory(0x058Dd94, SetTo, 128 + ScreenX);
+        setloc("Location 16", 102 + ScreenX, 215 + ScreenY, 128 + ScreenX, 240 + ScreenY);
     }
 
     if (Deaths(P1, Exactly, 1333, 93)) {
 
-        SetMemory(0x058Dd04, SetTo, 265 + ScreenY); /* Loc 9*/
-        SetMemory(0x058Dd0c, SetTo, 270 + ScreenY);
-        SetMemory(0x058Dd00, SetTo, 34 + ScreenX);
-        SetMemory(0x058Dd08, SetTo, 86 + ScreenX);
+        setloc("Location 9", 34 + ScreenX, 265 + ScreenY, 86 + ScreenX, 270 + ScreenY);
 
-        SetMemory(0x058Dd18, SetTo, 245 + ScreenY); /* Loc 10*/
-        SetMemory(0x058Dd20, SetTo, 255 + ScreenY);
-        SetMemory(0x058Dd14, SetTo, 36 + ScreenX);
-        SetMemory(0x058Dd1c, SetTo, 42 + ScreenX);
+        setloc("Location 10", 36 + ScreenX, 245 + ScreenY, 42 + ScreenX, 255 + ScreenY);
 
     }
 }
 
 function beforeTriggerExec() {
+
+
 
     ScreenX = dwread(0x00628448);
     ScreenY = dwread(0x00628470);
@@ -7658,10 +7537,7 @@ function beforeTriggerExec() {
         GiveUnits(All, 88, P1, 64, P3);
         GiveUnits(All, 88, P3, 64, P1);
         SetDeaths(P1, SetTo, 0, 98);
-        SetMemory(0x0058dc60, Subtract, 8);
-        SetMemory(0x0058dc64, Subtract, 8);
-        SetMemory(0x0058dc68, Add, 8);
-        SetMemory(0x0058dc6c, Add, 8);
+        dilateloc("Location 1", 8, 8);
 
         RemoveUnitAt(All, 105, 1, P1);
         SetDeaths(P1, SetTo, 4, 94);
@@ -8067,10 +7943,7 @@ function beforeTriggerExec() {
         GiveUnits(All, 88, P1, 64, P3);
         GiveUnits(All, 88, P3, 64, P1);
         SetDeaths(P1, SetTo, 0, 98);
-        SetMemory(0x0058dc60, Subtract, 8);
-        SetMemory(0x0058dc64, Subtract, 8);
-        SetMemory(0x0058dc68, Add, 8);
-        SetMemory(0x0058dc6c, Add, 8);
+        dilateloc("Location 1", 8, 8);
 
         RemoveUnitAt(All, 82, 1, P1);
         GiveUnits(All, 96, P1, 64, P3);
