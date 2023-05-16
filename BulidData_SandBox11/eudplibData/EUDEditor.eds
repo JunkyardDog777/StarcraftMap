@@ -1,0 +1,42 @@
+[main]
+input: ..\..\FFB_Mapcreator01x_inputmap.scx
+output: ..\..\..\..\..\..\..\..\..\Program Files (x86)\StarCraft\Maps\FFB_Mapcreator01x.scx
+[DataEditor.py]
+[eudTurbo]
+[ExtraDataEditor.py]
+[dataDumper]
+
+[TriggerEditor\SandBox.eps]
+
+[MSQC]
+NotTyping ; KeyDown(1) : VKeyDown_1, 1
+NotTyping ; KeyDown(Q) : VKeyDown_Q, 1
+NotTyping ; KeyDown(T) : VKeyDown_T, 1
+NotTyping ; KeyDown(W) : VKeyDown_W, 1
+NotTyping ; KeyDown(E) : VKeyDown_E, 1
+NotTyping ; KeyDown(A) : VKeyDown_SP5, 1
+NotTyping ; KeyDown(S) : VKeyDown_S, 1
+NotTyping ; KeyDown(D) : VKeyDown_SP6, 1
+NotTyping ; KeyDown(Z) : VKeyDown_Z, 1
+NotTyping ; KeyDown(X) : VKeyDown_X, 1
+NotTyping ; KeyDown(C) : VKeyDown_C, 1
+NotTyping ; KeyDown(F) : VKeyDown_F, 1
+NotTyping ; KeyDown(R) : VKeyDown_R, 1
+NotTyping ; KeyDown(G) : VKeyDown_G, 1
+NotTyping ; KeyDown(V) : VKeyDown_V, 1
+NotTyping ; KeyDown(`) : VKeyDown_SP43, 1
+NotTyping ; KeyDown(DELETE) : VKeyDown_DELETE, 1
+NotTyping ; KeyDown(2) : VKeyDown_2, 1
+NotTyping ; KeyPress(LSHIFT) : VKeyPress_LSHIFT, 1
+MouseDown(L) : VMouseDown_L, 1
+MouseDown(R) : VMouseDown_R, 1
+mouse : Location 1
+
+[chatEvent]
+__addr__ : 0x58D900
+__ptrAddr__ : 0x58D904
+__patternAddr__ : 0x58D908
+__lenAddr__ : 0x58D90C
+
+
+

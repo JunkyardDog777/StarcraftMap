@@ -1,0 +1,57 @@
+import PluginVariables as msqcvar;
+/*================Start Import================*/
+/*================End Import================*/
+/*================Start Var================*/
+/*================End Var================*/
+function ClassicTriggerExec(){
+    const _origcp = getcurpl();
+    /*================Start Player 1================*/
+    if (playerexist(0))
+    {
+        setcurpl(0);
+        const cp = 0;
+        
+        {
+
+                MemoryEPD(EPD(msqcvar.VKeyDown_1) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_Q) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_T) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_W) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_E) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_SP5) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_S) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_SP6) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_Z) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_X) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_C) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_F) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_R) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_G) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_V) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_SP43) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_DELETE) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_2) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyDown_1) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VKeyPress_LSHIFT) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VMouseDown_L) + 0, Exactly, 1);
+                MemoryEPD(EPD(msqcvar.VMouseDown_R) + 0, Exactly, 1);
+        }
+        {
+
+                SetMemoryXEPD(EPD(0x6605F0 + 80 * 1), 7, 2, 0xFF);
+                SetMemoryXEPD(EPD(0x663150 + 80 * 1), 9, 2, 0xFF);
+                bread(0x663150 + 80 * 1);
+                SetMemoryXEPD(EPD(0x666160 + 306 * 2), 7, 290, 0xFFFF);
+                wread_epd(EPD(cp) + 52, 0);
+                SetMemoryXEPD(EPD(0x669E28 + 208 * 1), 7, 16, 0xFF);
+                SetMemoryXEPD(EPD(0x669E28 + 209 * 1), 7, 4096, 0xFF00);
+                SetMemoryXEPD(EPD(0x669E28 + 210 * 1), 7, 1048576, 0xFF0000);
+                SetMemoryXEPD(EPD(0x669E28 + 345 * 1), 7, 4096, 0xFF00);
+                SetMemoryXEPD(EPD(0x669E28 + 277 * 1), 7, 2304, 0xFF00);
+                SetMemory(0x66EC48 + 215 * 4, 7, 223);
+                bread(0x663150 + 80 * 1);
+        }
+    }
+    /*================End Player 1================*/
+    setcurpl(_origcp);
+}

@@ -1,0 +1,50 @@
+import PluginVariables as msqcvar;
+const Displaytext = StringBuffer();
+var V0;
+var V1;
+var V2;
+var V3;
+var V4;
+var V5;
+var V6;
+
+/*================Start Import================*/
+/*================End Import================*/
+/*================Start Var================*/
+/*================End Var================*/
+function ClassicTriggerExec(){
+
+           { once if (
+                Always()
+            ){
+            
+            
+            }
+        }
+}
+function beforeTriggerExec(){
+
+   { 
+        if (
+                Always()
+            ){
+
+
+            Displaytext.printfAt(7," ", P1);
+                Displaytext.printfAt(8," ", P1);
+                eprintf("V0:{} V1:{} V2:{} V3:{} V4:{} V5:{}", V0,V1,V2,V3,V4,V5);
+                V0 = dwread(0x0058be04);
+            bwrite(0x00581D76, 0);
+            }
+        }
+
+
+
+	ClassicTriggerExec();
+}
+function onPluginStart(){
+
+}
+function afterTriggerExec(){
+
+}
