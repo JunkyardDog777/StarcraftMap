@@ -1,0 +1,630 @@
+import PluginVariables as msqcvar;
+import TriggerEditor.TETools as tt;
+
+
+const Pspawner = [ 69,58,47,36,25,14,73,82 ];
+const PLoc1 = [ 1,3,5,7,9,11,13,15 ];
+const PLoc2 = [ 2,4,6,8,10,12,14,16 ];
+const PmX = [0x0058efac,0x0058efc0,0x0058EFD4,0x0058EFE8,0x0058EFFC,0x0058F010, 0x0058F024,0x0058F038 ];
+const PmY = [0x0058efb0,0x0058efc4,0x0058EFD8,0x0058EFEc,0x0058f000,0x0058F014, 0x0058F028,0x0058F03c ];
+const PML = [248, 249, 250, 251, 252, 253, 254, 255];
+
+
+
+const PaLoc1X1 = [0x0058dc60, 0x0058DC88,  0x0058DCB0,  0x0058DCD8,  0x0058DD00, 0x0058DD28, 0x0058DD50,  0x0058DD78];
+const PaLoc1Y1 =  [0x0058dc64, 0x0058DC8c,  0x0058DCB4,  0x0058DCDc,  0x0058DD04, 0x0058DD2c, 0x0058DD54,  0x0058DD7c];
+const PaLoc1X2 = [0x0058dc68, 0x0058DC90,  0x0058DCB8,  0x0058DCe0,  0x0058DD08, 0x0058DD30, 0x0058DD58,  0x0058DD80];
+const PaLoc1Y2 =  [0x0058dc6c, 0x0058DC94,  0x0058DCBc,  0x0058DCe4,  0x0058DD0c, 0x0058DD34, 0x0058DD5c,  0x0058DD84];
+const PaLoc2 = [0x0058dc74,0x0058DC9C, 0x0058DCC4, 0x0058DCEC, 0x0058DD14, 0x0058DD3C,  0x0058DD64, 0x0058DD8C];
+
+const uGcursorplayer = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+const uGcursorplayer2 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+const uGcursorplayer3 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+const uGcursorplayer4 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+const uGcursorplayer5 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+const uGcursorplayer6 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+const uGcursorplayer7 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+const uGcursorplayer8 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+const uGcursorplayer9 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+const uGcursorplayer10 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+const uGcursorplayer11 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+const uGcursorplayer12 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+const uGcursorplayer13 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+
+const SPoffset = [0,48,96,144,192,240,288];
+const ampmenu = [0,0,0,0,0,0,0];
+const playergswitch = [0,0,0,0,0,0,0];
+const Shiftbuffer = [0,0,0,0,0,0,0];
+const pressShift  = [0,0,0,0,0,0,0];
+const pressG  = [0,0,0,0,0,0,0];
+const Gbuffer  = [0,0,0,0,0,0,0];
+const playergtimer= [0,0,0,0,0,0,0];
+const SR = [0,0,0,0,0,0,0];
+const MCckeyPress = [0,0,0,0,0,0,0];
+const MCkey = [0,0,0,0,0,0,0];
+const Gsync = [0,0,0,0,0,0,0];
+const MCcKey =[Db("A"),Db("B"),Db("C"),Db("D"),Db("E"),Db("F"),Db("G"),Db("H")
+                           ,Db("I"),Db("J"),Db("K"),Db("L"),Db("M"),Db("N"),Db("O")
+                          ,Db("P"),Db("Q"),Db("R"),Db("S"),Db("T"),Db("U")
+                          ,Db("V"),Db("W"),Db("X"),Db("Y"),Db("Z"),Db("None") ];
+const displaytext = StringBuffer();                          
+    
+                
+                          
+                          
+function MulticastMoveCommand(){
+foreach(player : EUDLoopPlayer()){
+     if(msqcvar.VKeyPress_SP5[player]){MCkey[player]    =1; MCckeyPress[player]=0; } 
+else if(msqcvar.VKeyPress_B[player]){MCkey[player]     =1; MCckeyPress[player]=1;} 
+else if(msqcvar.VKeyPress_C[player]){MCkey[player]     =1; MCckeyPress[player]=2;} 
+else if(msqcvar.VKeyPress_SP6[player]){MCkey[player] =1; MCckeyPress[player]=3;} 
+else if(msqcvar.VKeyPress_E[player]){MCkey[player]     =1; MCckeyPress[player]=4;} 
+else if(msqcvar.VKeyPress_F[player]){MCkey[player]     =1; MCckeyPress[player]=5;} 
+else if(msqcvar.VKeyPress_G[player]){MCkey[player]    =1; MCckeyPress[player]=6;}  
+else if(msqcvar.VKeyPress_H[player]){MCkey[player]    =1; MCckeyPress[player]=7;} 
+else if(msqcvar.VKeyPress_I[player]){MCkey[player]     =1; MCckeyPress[player]=8;} 
+else if(msqcvar.VKeyPress_J[player]){MCkey[player]     =1; MCckeyPress[player]=9;} 
+else if(msqcvar.VKeyPress_K[player]){MCkey[player]    =1; MCckeyPress[player]=10;} 
+else if(msqcvar.VKeyPress_L[player]){MCkey[player]    =1;  MCckeyPress[player]=11;} 
+else if(msqcvar.VKeyPress_SP3[player]){MCkey[player] =1; MCckeyPress[player]=12;} 
+else if(msqcvar.VKeyPress_SP1[player]){MCkey[player] =1; MCckeyPress[player]=13;} 
+else if(msqcvar.VKeyPress_O[player]){MCkey[player]  =1; MCckeyPress[player]=14;} 
+else if(msqcvar.VKeyPress_SP4[player]){MCkey[player] =1; MCckeyPress[player]=15;} 
+else if(msqcvar.VKeyPress_Q[player]){MCkey[player]  =1;  MCckeyPress[player]=16;} 
+else if(msqcvar.VKeyPress_R[player]){MCkey[player] =1; MCckeyPress[player]=17;} 
+else if(msqcvar.VKeyPress_S[player]){MCkey[player] =1; MCckeyPress[player]=18;} 
+else if(msqcvar.VKeyPress_T[player]){MCkey[player] =1; MCckeyPress[player]=19;} 
+else if(msqcvar.VKeyPress_SP2[player]){MCkey[player] =1;MCckeyPress[player]=20;}
+else if(msqcvar.VKeyPress_V[player]){MCkey[player] =1; MCckeyPress[player]=21;}
+else if(msqcvar.VKeyPress_W[player]){MCkey[player] =1;MCckeyPress[player]=22;}
+else if(msqcvar.VKeyPress_X[player]){MCkey[player] =1; MCckeyPress[player]=23;}
+else if(msqcvar.VKeyPress_Y[player]){MCkey[player] =1; MCckeyPress[player]=24;}
+else if(msqcvar.VKeyPress_Z[player]){MCkey[player] =1; MCckeyPress[player]=25;}  
+else{MCkey[player] =0;}
+
+setcurpl(player);
+
+
+           
+             if( Shiftbuffer[player]>=12){ Shiftbuffer[player]=10;  }
+             if( Shiftbuffer[player]>=1){ Shiftbuffer[player]-=1; pressShift[player]=1; }  
+
+
+
+const c2Master = [uGcursorplayer[1],uGcursorplayer2[1],uGcursorplayer3[1],uGcursorplayer4[1],uGcursorplayer5[1],uGcursorplayer6[1],uGcursorplayer7[1],uGcursorplayer8[1]];
+const c3Master = [uGcursorplayer[2],uGcursorplayer2[2],uGcursorplayer3[2],uGcursorplayer4[2],uGcursorplayer5[2],uGcursorplayer6[2],uGcursorplayer7[2],uGcursorplayer8[2]];
+const c4Master = [uGcursorplayer[3],uGcursorplayer2[3],uGcursorplayer3[3],uGcursorplayer4[3],uGcursorplayer5[3],uGcursorplayer6[3],uGcursorplayer7[3],uGcursorplayer8[3]];
+const c5Master = [uGcursorplayer[4],uGcursorplayer2[4],uGcursorplayer3[4],uGcursorplayer4[4],uGcursorplayer5[4],uGcursorplayer6[4],uGcursorplayer7[4],uGcursorplayer8[4]];
+const c6Master = [uGcursorplayer[5],uGcursorplayer2[5],uGcursorplayer3[5],uGcursorplayer4[5],uGcursorplayer5[5],uGcursorplayer6[5],uGcursorplayer7[5],uGcursorplayer8[5]];
+const c7Master = [uGcursorplayer[6],uGcursorplayer2[6],uGcursorplayer3[6],uGcursorplayer4[6],uGcursorplayer5[6],uGcursorplayer6[6],uGcursorplayer7[6],uGcursorplayer8[6]];
+const c8Master = [uGcursorplayer[7],uGcursorplayer2[7],uGcursorplayer3[7],uGcursorplayer4[7],uGcursorplayer5[7],uGcursorplayer6[7],uGcursorplayer7[7],uGcursorplayer8[7]];
+const c9Master = [uGcursorplayer[8],uGcursorplayer2[8],uGcursorplayer3[8],uGcursorplayer4[8],uGcursorplayer5[8],uGcursorplayer6[8],uGcursorplayer7[8],uGcursorplayer8[8]];
+const c10Master = [uGcursorplayer[9],uGcursorplayer2[9],uGcursorplayer3[9],uGcursorplayer4[9],uGcursorplayer5[9],uGcursorplayer6[9],uGcursorplayer7[9],uGcursorplayer8[9]];
+const c11Master = [uGcursorplayer[10],uGcursorplayer2[10],uGcursorplayer3[10],uGcursorplayer4[10],uGcursorplayer5[10],uGcursorplayer6[10],uGcursorplayer7[10],uGcursorplayer8[10]];
+ const c12Master = [uGcursorplayer[11],uGcursorplayer2[11],uGcursorplayer3[11],uGcursorplayer4[11],uGcursorplayer5[11],uGcursorplayer6[11],uGcursorplayer7[11],uGcursorplayer8[11]];
+  const c13Master = [uGcursorplayer[12],uGcursorplayer2[12],uGcursorplayer3[12],uGcursorplayer4[12],uGcursorplayer5[12],uGcursorplayer6[12],uGcursorplayer7[12],uGcursorplayer8[12]];
+  
+  const playercursor2EpdMaster = CUnit.from_read(c2Master[player])  ;
+  const playercursor3EpdMaster = CUnit.from_read(c3Master[player])  ;
+  const playercursor4EpdMaster = CUnit.from_read(c4Master[player])  ;
+  const playercursor5EpdMaster = CUnit.from_read(c5Master[player])  ;
+  const playercursor6EpdMaster = CUnit.from_read(c6Master[player])  ;
+  const playercursor7EpdMaster = CUnit.from_read(c7Master[player])  ;
+  const playercursor8EpdMaster = CUnit.from_read(c8Master[player])  ;
+  const playercursor9EpdMaster = CUnit.from_read(c9Master[player])  ;
+  const playercursor10EpdMaster = CUnit.from_read(c10Master[player])  ;
+  const playercursor11EpdMaster = CUnit.from_read(c11Master[player])  ;
+  const playercursor12EpdMaster = CUnit.from_read(c12Master[player])  ;
+  const playercursor13EpdMaster = CUnit.from_read(c13Master[player])  ;
+
+  
+
+
+
+      const selectMaster =   [ (0x6284E8+SPoffset[0]) , (0x6284E8+SPoffset[1]) , (0x6284E8+SPoffset[2]) , (0x6284E8+SPoffset[3]) , (0x6284E8+SPoffset[4]) , (0x6284E8+SPoffset[5]) , (0x6284E8+SPoffset[6]) , (0x6284E8+SPoffset[7]) ];   
+      const select1Master = [ (0x6284E8+4+SPoffset[0]) , (0x6284E8+4+SPoffset[1]) , (0x6284E8+4+SPoffset[2]) , (0x6284E8+4+SPoffset[3]) , (0x6284E8+4+SPoffset[4]) , (0x6284E8+4+SPoffset[5]) , (0x6284E8+4+SPoffset[6]) , (0x6284E8+4+SPoffset[7]) ];   
+      const select2Master = [(0x6284E8+8+SPoffset[0]), (0x6284E8+8+SPoffset[1]) ,(0x6284E8+8+SPoffset[2]) , (0x6284E8+8+SPoffset[3]) , (0x6284E8+8+SPoffset[4]),(0x6284E8+8+SPoffset[5]),(0x6284E8+8+SPoffset[6]),(0x6284E8+8+SPoffset[7]) ];   
+      const select3Master = [(0x6284E8+12+SPoffset[0]),(0x6284E8+12+SPoffset[1]),(0x6284E8+12+SPoffset[2]),(0x6284E8+12+SPoffset[3]),(0x6284E8+12+SPoffset[4]),(0x6284E8+12+SPoffset[5]),(0x6284E8+12+SPoffset[6]),(0x6284E8+12+SPoffset[7]) ]; 
+      const select4Master = [(0x6284E8+16+SPoffset[0]),(0x6284E8+16+SPoffset[1]),(0x6284E8+16+SPoffset[2]),(0x6284E8+16+SPoffset[3]),(0x6284E8+16+SPoffset[4]),(0x6284E8+16+SPoffset[5]),(0x6284E8+16+SPoffset[6]),(0x6284E8+16+SPoffset[7]) ]; 
+      const select5Master = [(0x6284E8+20+SPoffset[0]),(0x6284E8+20+SPoffset[1]),(0x6284E8+20+SPoffset[2]),(0x6284E8+20+SPoffset[3]),(0x6284E8+20+SPoffset[4]),(0x6284E8+20+SPoffset[5]),(0x6284E8+20+SPoffset[6]),(0x6284E8+20+SPoffset[7]) ]; 
+      const select6Master = [(0x6284E8+24+SPoffset[0]),(0x6284E8+24+SPoffset[1]),(0x6284E8+24+SPoffset[2]),(0x6284E8+24+SPoffset[3]),(0x6284E8+24+SPoffset[4]),(0x6284E8+24+SPoffset[5]),(0x6284E8+24+SPoffset[6]),(0x6284E8+24+SPoffset[7]) ];  
+      const select7Master = [(0x6284E8+28+SPoffset[0]),(0x6284E8+28+SPoffset[1]),(0x6284E8+28+SPoffset[2]),(0x6284E8+28+SPoffset[3]),(0x6284E8+28+SPoffset[4]),(0x6284E8+28+SPoffset[5]),(0x6284E8+28+SPoffset[6]),(0x6284E8+28+SPoffset[7]) ]; 
+      const select8Master = [(0x6284E8+32+SPoffset[0]),(0x6284E8+32+SPoffset[1]),(0x6284E8+32+SPoffset[2]),(0x6284E8+32+SPoffset[3]),(0x6284E8+32+SPoffset[4]),(0x6284E8+32+SPoffset[5]),(0x6284E8+32+SPoffset[6]),(0x6284E8+32+SPoffset[7]) ]; 
+      const select9Master = [(0x6284E8+36+SPoffset[0]),(0x6284E8+36+SPoffset[1]),(0x6284E8+36+SPoffset[2]),(0x6284E8+36+SPoffset[3]),(0x6284E8+36+SPoffset[4]),(0x6284E8+36+SPoffset[5]),(0x6284E8+36+SPoffset[6]),(0x6284E8+36+SPoffset[7]) ];    
+      const select10Master =[(0x6284E8+40+SPoffset[0]),(0x6284E8+40+SPoffset[1]),(0x6284E8+40+SPoffset[2]),(0x6284E8+40+SPoffset[3]),(0x6284E8+40+SPoffset[4]),(0x6284E8+40+SPoffset[5]),(0x6284E8+40+SPoffset[6]),(0x6284E8+40+SPoffset[7]) ];    
+      const select11Master =[(0x6284E8+44+SPoffset[0]),(0x6284E8+44+SPoffset[1]),(0x6284E8+44+SPoffset[2]),(0x6284E8+44+SPoffset[3]),(0x6284E8+44+SPoffset[4]),(0x6284E8+44+SPoffset[5]),(0x6284E8+44+SPoffset[6]),(0x6284E8+44+SPoffset[7]) ];    
+      const select12Master =[(0x6284E8+48+SPoffset[0]),(0x6284E8+48+SPoffset[1]),(0x6284E8+48+SPoffset[2]),(0x6284E8+48+SPoffset[3]),(0x6284E8+48+SPoffset[4]),(0x6284E8+48+SPoffset[5]),(0x6284E8+48+SPoffset[6]),(0x6284E8+48+SPoffset[7]) ];    
+          
+             const selectEpd = EPD(selectMaster[player]);
+             const playerselectEpd = CUnit.from_read(selectEpd)  ;
+             const select1Epd = EPD(select1Master[player]);
+             const playerselect1Epd = CUnit.from_read(select1Epd)  ;
+             const select2Epd = EPD(select2Master[player]);
+             const playerselect2Epd = CUnit.from_read(select2Epd)  ;
+             const select3Epd = EPD(select3Master[player]);
+             const playerselect3Epd = CUnit.from_read(select3Epd)  ;  
+             const select4Epd = EPD(select4Master[player]);
+             const playerselect4Epd = CUnit.from_read(select4Epd)  ;
+             const select5Epd = EPD(select5Master[player]);
+             const playerselect5Epd = CUnit.from_read(select5Epd)  ;
+             const select6Epd = EPD(select6Master[player]);
+             const playerselect6Epd = CUnit.from_read(select6Epd)  ;  
+             const select7Epd = EPD(select7Master[player]);
+             const playerselect7Epd = CUnit.from_read(select7Epd)  ;
+             const select8Epd = EPD(select8Master[player]);
+             const playerselect8Epd = CUnit.from_read(select8Epd)  ;
+             const select9Epd = EPD(select9Master[player]);
+             const playerselect9Epd = CUnit.from_read(select9Epd)  ;  
+             const select10Epd = EPD(select10Master[player]);
+             const playerselect10Epd = CUnit.from_read(select10Epd)  ;  
+             const select11Epd = EPD(select11Master[player]);
+             const playerselect11Epd = CUnit.from_read(select11Epd)  ;  
+             const select12Epd = EPD(select12Master[player]);
+             const playerselect12Epd = CUnit.from_read(select12Epd)  ; 
+
+if(playerselectEpd.unitType ==7){
+  
+displaytext.printfAt(2, "{} ",playerselectEpd.order) ;
+displaytext.printfAt(3, "{} ",playerselectEpd.secondaryOrder)  ;
+displaytext.printfAt(4, "{} ",playerselectEpd.powerup) ;
+displaytext.printfAt(5, "{} ",playerselectEpd.isCarryingSomething ) ;     
+displaytext.printfAt(6, "{} ",playerselectEpd.targetResourceUnit.unitType ) ;      
+}
+
+
+
+        
+        
+if(playergtimer[player]!=0){playergtimer[player]-=1;}
+if(pressG[player]==0 && playergswitch[player]!=0 && pressShift[player]==0){
+addloc(Pspawner[player],0,-32);
+setloc(PLoc1[player], playercursor2EpdMaster.posX, playercursor2EpdMaster.posY);
+MoveUnit(All,219,player,PLoc1[player],Pspawner[player]); 
+addloc(Pspawner[player],3,0);
+setloc(PLoc1[player], playercursor3EpdMaster.posX, playercursor3EpdMaster.posY);
+MoveUnit(All,219,player,PLoc1[player],Pspawner[player]); 
+addloc(Pspawner[player],3,0);
+setloc(PLoc1[player], playercursor4EpdMaster.posX, playercursor4EpdMaster.posY);
+MoveUnit(All,219,player,PLoc1[player],Pspawner[player]); 
+addloc(Pspawner[player],3,0);
+setloc(PLoc1[player],  playercursor5EpdMaster.posX, playercursor5EpdMaster.posY);
+MoveUnit(All,219,player,PLoc1[player],Pspawner[player]); 
+addloc(Pspawner[player],3,0);
+setloc(PLoc1[player], playercursor6EpdMaster.posX, playercursor6EpdMaster.posY);
+MoveUnit(All,219,player,PLoc1[player],Pspawner[player]); 
+addloc(Pspawner[player],3,0);
+setloc(PLoc1[player], playercursor7EpdMaster.posX, playercursor7EpdMaster.posY);
+MoveUnit(All,219,player,PLoc1[player],Pspawner[player]); 
+addloc(Pspawner[player],3,0);
+setloc(PLoc1[player], playercursor8EpdMaster.posX, playercursor8EpdMaster.posY);
+MoveUnit(All,219,player,PLoc1[player],Pspawner[player]); 
+addloc(Pspawner[player],3,0);
+setloc(PLoc1[player], playercursor9EpdMaster.posX, playercursor9EpdMaster.posY);
+MoveUnit(All,219,player,PLoc1[player],Pspawner[player]); 
+addloc(Pspawner[player],3,0);
+setloc(PLoc1[player],  playercursor10EpdMaster.posX, playercursor10EpdMaster.posY);
+MoveUnit(All,219,player,PLoc1[player],Pspawner[player]); 
+addloc(Pspawner[player],3,0);
+setloc(PLoc1[player], playercursor11EpdMaster.posX, playercursor11EpdMaster.posY);
+MoveUnit(All,219,player,PLoc1[player],Pspawner[player]); 
+addloc(Pspawner[player],0,3);
+setloc(PLoc1[player], playercursor12EpdMaster.posX, playercursor12EpdMaster.posY);
+MoveUnit(All,219,player,PLoc1[player],Pspawner[player]); 
+addloc(Pspawner[player],0,3);
+setloc(PLoc1[player], playercursor13EpdMaster.posX, playercursor13EpdMaster.posY);
+MoveUnit(All,219,player,PLoc1[player],Pspawner[player]); 
+
+addloc(Pspawner[player],-27,26);
+ playergswitch[player]=0;
+
+}
+  
+var y;
+
+      if(!msqcvar.VKeyPress_LSHIFT[0]
+      && Shiftbuffer[player]==0){pressShift[player] =0;}
+      if(msqcvar.VKeyPress_LSHIFT[0]){
+      Shiftbuffer[player] +=3;
+      pressShift[player] =1;
+      }
+if( Shiftbuffer[player]>=12){ Shiftbuffer[player]=10;  }
+if( Shiftbuffer[player]>=1){ Shiftbuffer[player]-=1; pressShift[player]=1; }  
+      if(pressShift[player]==1){
+      
+      if(MCkey[player] ==1
+      && y ==0
+      && Bring(0,Exactly,0,219,PML[player])
+     ){ y=1;playergswitch[player]+=1;}
+  if(MCkey[player] ==0
+      && y ==1
+     ){ 
+    
+     y=0;}
+     
+     }
+     
+if(
+MCkey[player] ==0
+&&!msqcvar.VKeyPress_LSHIFT[player]
+&&playergtimer[player]==0 
+&&  pressG[player]==1 
+&& Gbuffer[player]<=5
+){ 
+pressG[player]=0; 
+}  
+if( Gbuffer[player]>=1){ Gbuffer[player]-=1;  
+//if(playerselectEpd.orderState ==0){ PlayWAV("sound/terran/scv/TSCYES01.WAV"); }
+}     
+if( Gbuffer[player]>=7){ Gbuffer[player]=6;  }
+if(Gbuffer[player]>=6){   pressG[player]=1;   }     
+  if(MCckeyPress[player] == Gsync[player] && MCkey[player] == 1){
+  
+      pressG[player]=1;
+      Gbuffer[player]+=2; 
+      }        
+    
+if(pressG[player]==1){
+var o;
+var l;
+var t;
+var r;
+var b;
+
+
+if(playerselectEpd !=0 && playergswitch[player]<=1){  
+
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+playerselectEpd.orderState=0; 
+playerselectEpd.orderID=6; 
+playerselectEpd.orderTargetX=wread(PmX[player]);
+playerselectEpd.orderTargetY=wread(PmY[player]);
+ii=0;
+}
+
+o= playerselectEpd.unitType;
+        l=        wread(0x6617C8 + o * 8);
+        t=         wread(0x6617CA + o * 8);
+        r=       wread(0x6617CC + o * 8);
+        b=      wread(0x6617CE + o * 8);
+
+
+playergtimer[player]=3;
+if(msqcvar.VKeyPress_LSHIFT[player]){playergswitch[player]+=2;}
+else{playergswitch[player]=4;}
+setloc(PLoc2[player], playercursor2EpdMaster.posX , playercursor2EpdMaster.posY);
+SetResources(player,Add,1,Ore);
+MoveUnit(All,219,player,PLoc2[player],PML[player]);
+setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]));
+ addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+} 
+
+if(
+
+
+wread(PmX[player]) <=  wread(PaLoc1X1[player]) ||
+wread(PmY[player]) <= wread(PaLoc1Y1[player]) ||
+wread(PmX[player]) >= wread(PaLoc1X2[player])  ||
+wread(PmY[player]) >= wread(PaLoc1Y2[player])
+){
+
+
+
+
+
+if(playerselect1Epd !=0 && playergtimer[player]==0 && playergswitch[player] ==4 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+playerselect1Epd.orderState=0; 
+playerselect1Epd.orderID=6; 
+playerselect1Epd.orderTargetX=wread(PmX[player]);
+playerselect1Epd.orderTargetY=wread(PmY[player]);
+ii=0;
+}
+
+setloc(PLoc2[player], playercursor3EpdMaster.posX , playercursor3EpdMaster.posY);
+MoveUnit(All,219,player,PLoc2[player],PML[player]);
+setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+ addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+playergtimer[player]=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+else{playergswitch[player]=7;}
+}
+
+
+
+
+if(playerselect2Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==7 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+playerselect2Epd.orderState=0; 
+playerselect2Epd.orderID=6; 
+playerselect2Epd.orderTargetX=wread(PmX[player]);
+playerselect2Epd.orderTargetY=wread(PmY[player]);
+ii=0;
+}
+playergtimer[player]=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+else{playergswitch[player]=10;}
+setloc(PLoc2[player], playercursor4EpdMaster.posX , playercursor4EpdMaster.posY);
+MoveUnit(All,219,player,PLoc2[player],PML[player]);
+setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+ addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+
+if(playerselect3Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==10 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+playerselect3Epd.orderState=0; 
+playerselect3Epd.orderID=6; 
+playerselect3Epd.orderTargetX=wread(PmX[player]);
+playerselect3Epd.orderTargetY=wread(PmY[player]);
+ii=0;
+}
+playergtimer[player]=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+else{playergswitch[player]=13;}
+setloc(PLoc2[player], playercursor5EpdMaster.posX , playercursor5EpdMaster.posY);
+MoveUnit(All,219,player,PLoc2[player],PML[player]);
+setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+ addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+if(playerselect4Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==13 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+playerselect4Epd.orderState=0; 
+playerselect4Epd.orderID=6; 
+playerselect4Epd.orderTargetX=wread(PmX[player]);
+playerselect4Epd.orderTargetY=wread(PmY[player]);
+ii=0;
+}
+playergtimer[player]=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+else{playergswitch[player]=16;}
+setloc(PLoc2[player], playercursor6EpdMaster.posX , playercursor6EpdMaster.posY);
+MoveUnit(All,219,player,PLoc2[player],PML[player]);
+setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+ addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+
+if(playerselect5Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==16 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+playerselect5Epd.orderState=0; 
+playerselect5Epd.orderID=6; 
+playerselect5Epd.orderTargetX=wread(PmX[player]);
+playerselect5Epd.orderTargetY=wread(PmY[player]);
+ii=0;
+}
+playergtimer[player]=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+else{playergswitch[player]=19;}
+setloc(PLoc2[player], playercursor7EpdMaster.posX , playercursor7EpdMaster.posY);
+MoveUnit(All,219,player,PLoc2[player],PML[player]);
+setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+ addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+if(playerselect6Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==19 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+playerselect6Epd.orderState=0; 
+playerselect6Epd.orderID=6; 
+playerselect6Epd.orderTargetX=wread(PmX[player]);
+playerselect6Epd.orderTargetY=wread(PmY[player]);
+ii=0;
+}
+playergtimer[player]=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+else{playergswitch[player]=22;}
+setloc(PLoc2[player], playercursor8EpdMaster.posX , playercursor8EpdMaster.posY);
+MoveUnit(All,219,player,PLoc2[player],PML[player]);
+setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+ addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+if(playerselect7Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==22 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+playerselect7Epd.orderState=0; 
+playerselect7Epd.orderID=6; 
+playerselect7Epd.orderTargetX=wread(PmX[player]);
+playerselect7Epd.orderTargetY=wread(PmY[player]);
+ii=0;
+}
+playergtimer[player]=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+else{playergswitch[player]=25;}
+setloc(PLoc2[player], playercursor9EpdMaster.posX , playercursor9EpdMaster.posY);
+MoveUnit(All,219,player,PLoc2[player],PML[player]);
+setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+ addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+
+
+if(playerselect8Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==25 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+playerselect8Epd.orderState=0; 
+playerselect8Epd.orderID=6; 
+playerselect8Epd.orderTargetX=wread(PmX[player]);
+playerselect8Epd.orderTargetY=wread(PmY[player]);
+ii=0;
+}
+playergtimer[player]=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+else{playergswitch[player]=28;}
+setloc(PLoc2[player], playercursor10EpdMaster.posX , playercursor10EpdMaster.posY);
+MoveUnit(All,219,player,PLoc2[player],PML[player]);
+setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+ addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+
+if(playerselect9Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==28 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+playerselect9Epd.orderState=0; 
+playerselect9Epd.orderID=6; 
+playerselect9Epd.orderTargetX=wread(PmX[player]);
+playerselect9Epd.orderTargetY=wread(PmY[player]);
+ii=0;
+}
+playergtimer[player]=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+else{playergswitch[player]=31;}
+setloc(PLoc2[player], playercursor11EpdMaster.posX , playercursor11EpdMaster.posY);
+MoveUnit(All,219,player,PLoc2[player],PML[player]);
+setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+ addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+
+
+if(playerselect10Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==31 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+playerselect10Epd.orderState=0; 
+playerselect10Epd.orderID=6; 
+playerselect10Epd.orderTargetX=wread(PmX[player]);
+playerselect10Epd.orderTargetY=wread(PmY[player]);
+ii=0;
+}
+playergtimer[player]=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+else{playergswitch[player]=34;}
+setloc(PLoc2[player], playercursor12EpdMaster.posX , playercursor12EpdMaster.posY);
+MoveUnit(All,219,player,PLoc2[player],PML[player]);
+setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+ addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+   
+
+
+if(playerselect11Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==34 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+playerselect11Epd.orderState=0; 
+playerselect11Epd.orderID=6; 
+playerselect11Epd.orderTargetX=wread(PmX[player]);
+playerselect11Epd.orderTargetY=wread(PmY[player]);
+ii=0;
+}
+playergtimer[player]=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+else{playergswitch[player]=37;}
+setloc(PLoc2[player], playercursor13EpdMaster.posX , playercursor13EpdMaster.posY);
+MoveUnit(All,219,player,PLoc2[player],PML[player]);
+setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+ addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+
+
+ 
+}
+}
+
+
+     
+       if ( tt.BuildCheckEPD(playerselectEpd,76) && ampmenu[player]==0    ) {tt.BuildResetEPD(playerselectEpd);  ampmenu[player] =10;    }
+ 
+      if (ampmenu[player]==10) {
+      
+if(MCkey[player] ==1){ampmenu[player]=9; Gsync[player] = MCckeyPress[player];
+
+}
+      displaytext.printfAt(5, "\x13 Press ANY key to ");
+      displaytext.printfAt(6, "\x13 Set your Multi-Group move command");
+
+      
+      }
+        if (ampmenu[player] ==9  ){  ampmenu[player]=0;  settblf(1172 + player, 0, "/x Currently:{:s} \n      Assign  \n Multi-Cast Move Command \n  \x1f   A\x04mped\x01 Extra Key   ",MCcKey[Gsync[player]] );
+        displaytext.printfAt(5, " "); displaytext.printfAt(6, " ");}   
+        
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+}
+
+}
+

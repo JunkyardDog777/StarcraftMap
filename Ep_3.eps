@@ -1,0 +1,229 @@
+import PluginVariables as msqcvar;
+import TriggerEditor.WorkSpace.MulticastMC as MCC;
+const displaytext = StringBuffer();
+var sg1;
+var sg2;
+var sg3;
+var glhf;
+const Pexist =[0,0,0,0,0,0,0,0];
+const Pspawner = [ 69,58,47,36,25,14,73,82 ];
+function beforeTriggerExec(){
+
+
+     if(!msqcvar.VKeyPress_LSHIFT[0]
+  && msqcvar.VKeyDown_X[0]){
+  wwrite((0x6CA318 + 118 * 2), 292);
+     CreateUnit(1, 176, 248, P1);
+  wwrite((0x6CA318 + 118 * 2), 281);}
+
+
+
+
+
+MCC.MulticastMoveCommand();
+if(glhf>=1){glhf-=1;}
+     once{
+     
+     glhf=10; MCC.Gsync[0]=26;MCC.Gsync[1]=26;MCC.Gsync[2]=26;MCC.Gsync[3]=26; 
+     
+     }
+
+
+     
+if(glhf==9){
+          if(playerexist(P1)){
+          settblf(1172, 0, "/x Currently:{:s} \n      Assign  \n Multi-Cast Move Command \n  \x1f   A\x04mped\x01 Extra Key   ",MCC.MCcKey[MCC.Gsync[0]] );
+          Pexist[0]=1;
+            if(Pexist[0]==1){
+            wwrite(0x66EC48 + 583 * 4, 309);
+  CreateUnit(13,219,Pspawner[0],0);
+               wwrite(0x66EC48 + 583 * 4, 332);
+               foreach ( epd: EUDLoopCUnit ()){ 
+                    if (epd.unitType==219 && epd.unknown0x8C == 0 ){ 
+                    var i;
+                    epd.remove_collision();
+                    MCC.uGcursorplayer[i]= epd;
+                    i++;
+                    epd.unknown0x8C += i;   
+                    }
+                  }     
+                }                
+              }
+}
+ if(glhf==8){
+          if(playerexist(P2)){
+          settblf(1173, 0, "/x Currently:{:s} \n      Assign  \n Multi-Cast Move Command \n  \x1f   A\x04mped\x01 Extra Key   ",MCC.MCcKey[MCC.Gsync[1]] );
+           Pexist[1]=1;
+            if(Pexist[1]==1){
+
+            wwrite(0x66EC48 + 583 * 4, 309);
+  CreateUnit(13,219,Pspawner[1],1);
+        
+               foreach ( epd1: EUDLoopCUnit ()){ 
+                    if (epd1.unitType==219 && epd1.unknown0x8C == 0 ){ 
+                    var i1;
+                    epd1.remove_collision();
+                    MCC.uGcursorplayer2[i1]= epd1;
+                    i1++;
+                    epd1.unknown0x8C += i1;   
+                          }
+                     }   
+          
+      
+           }
+          }
+    }    
+    if(glhf==7){
+          if(playerexist(P3 )){
+          settblf(1174, 0, "/x Currently:{:s} \n      Assign  \n Multi-Cast Move Command \n  \x1f   A\x04mped\x01 Extra Key   ",MCC.MCcKey[MCC.Gsync[2]] );
+                Pexist[2]=1;  
+            if(Pexist[2]==1){
+            
+            wwrite(0x66EC48 + 583 * 4, 309);
+  CreateUnit(13,219,Pspawner[2],2);
+              
+
+               foreach ( epd2: EUDLoopCUnit ()){ 
+                    if (epd2.unitType==219 && epd2.unknown0x8C == 0 ){ 
+                    var i2;
+                    epd2.remove_collision();
+                    MCC.uGcursorplayer2[i2]= epd2;
+                    i2++;
+                    epd2.unknown0x8C += i2;   
+                          }
+                     }   
+        
+       }
+          
+          }
+     }   
+     if(glhf==6){
+          if(playerexist(P4)){
+          settblf(1175, 0, "/x Currently:{:s} \n      Assign  \n Multi-Cast Move Command \n  \x1f   A\x04mped\x01 Extra Key   ",MCC.MCcKey[MCC.Gsync[3]] );
+          Pexist[3]=1 ; 
+                      if(Pexist[3]==1){
+
+            wwrite(0x66EC48 + 583 * 4, 309);
+  CreateUnit(13,219,Pspawner[3],3);
+               
+               foreach ( epd3: EUDLoopCUnit ()){ 
+                    if (epd3.unitType==219 && epd3.unknown0x8C == 0 ){ 
+                    var i3;
+                    epd3.remove_collision();
+                    MCC.uGcursorplayer2[i3]= epd3;
+                    i3++;
+                    epd3.unknown0x8C += i3;   
+                          }
+                     }   
+    }
+
+          
+          }     
+     }   
+     if(glhf==5){
+          if(playerexist(P5)){
+            Pexist[4]=1 ; 
+          if(Pexist[4]==1){
+
+            wwrite(0x66EC48 + 583 * 4, 309);
+  CreateUnit(13,219,Pspawner[4],4);
+  
+               foreach ( epd4: EUDLoopCUnit ()){ 
+                    if (epd4.unitType==219 && epd4.unknown0x8C == 0 ){ 
+                    var i4;
+                    epd4.remove_collision();
+                    MCC.uGcursorplayer2[i4]= epd4;
+                    i4++;
+                    epd4.unknown0x8C += i4;   
+                          }
+                     }   
+                 }   
+          
+          
+          }
+     }  
+     if(glhf==4){
+          if(playerexist(P6)){
+            Pexist[5]=1 ; 
+          if(Pexist[5]==1){
+          
+            wwrite(0x66EC48 + 583 * 4, 309);
+  CreateUnit(13,219,Pspawner[5],5);
+               foreach ( epd5: EUDLoopCUnit ()){ 
+                    if (epd5.unitType==219 && epd5.unknown0x8C == 0 ){ 
+                    var i5;
+                    epd5.remove_collision();
+                    MCC.uGcursorplayer2[i5]= epd5;
+                    i5++;
+                    epd5.unknown0x8C += i5;   
+                          }
+                     }   
+    
+           }  
+          }   
+    }  
+    if(glhf==3){
+          if(playerexist(P7)){
+            Pexist[6]=1 ; 
+          if(Pexist[6]==1){  
+            wwrite(0x66EC48 + 583 * 4, 309);
+  CreateUnit(13,219,Pspawner[6],6);
+               foreach ( epd6: EUDLoopCUnit ()){ 
+                    if (epd6.unitType==219 && epd6.unknown0x8C == 0 ){ 
+                    var i6;
+                    epd6.remove_collision();
+                    MCC.uGcursorplayer2[i6]= epd6;
+                    i6++;
+                    epd6.unknown0x8C += i6;   
+                          }
+                     }   
+             }   
+          
+          
+          }
+    }     
+    if(glhf==2){
+          if(playerexist(P8)){
+            Pexist[7]=1 ; 
+          if(Pexist[7]==1){  
+            wwrite(0x66EC48 + 583 * 4, 309);
+  CreateUnit(13,219,Pspawner[7],7);
+               foreach ( epd7: EUDLoopCUnit ()){ 
+                    if (epd7.unitType==219 && epd7.unknown0x8C == 0 ){ 
+                    var i7;
+                    epd7.remove_collision();
+                    MCC.uGcursorplayer8[i7]= epd7;
+                    i7++;
+                    epd7.unknown0x8C += i7;   
+                          }
+                     }   
+                }   
+        
+          }
+              
+          wwrite(0x66EC48 + 583 * 4, 332);
+      
+          
+             }
+
+
+
+
+  
+
+
+
+
+
+
+
+     }
+
+
+
+function onPluginStart(){
+
+}
+function afterTriggerExec(){
+
+}
